@@ -12,7 +12,7 @@ import (
 	"github.com/IBM/sarama"
 	"github.com/google/uuid"
 	"github.com/spf13/cobra"
-	"github.com/vgarvardt/gue/v5"
+	"github.com/vortex14/gue"
 )
 
 func newClientCommand() *cobra.Command {

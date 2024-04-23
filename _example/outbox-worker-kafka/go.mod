@@ -1,4 +1,4 @@
-module github.com/vgarvardt/gue/v5/example/outbox-worker-kafka
+module github.com/vortex14/gue/example/outbox-worker-kafka
 
 go 1.20
 
@@ -8,7 +8,7 @@ require (
 	github.com/google/uuid v1.3.1
 	github.com/jackc/pgx/v5 v5.5.4
 	github.com/spf13/cobra v1.7.0
-	github.com/vgarvardt/gue/v5 v5.5.0
+	github.com/vortex14/gue v5.5.0
 )
 
 require (

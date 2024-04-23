@@ -7,11 +7,11 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/vgarvardt/gue/v5/adapter"
-	"github.com/vgarvardt/gue/v5/adapter/libpq"
-	"github.com/vgarvardt/gue/v5/adapter/pgxv4"
-	"github.com/vgarvardt/gue/v5/adapter/pgxv5"
-	adapterTesting "github.com/vgarvardt/gue/v5/adapter/testing"
+	"github.com/vortex14/gue/adapter"
+	"github.com/vortex14/gue/adapter/libpq"
+	"github.com/vortex14/gue/adapter/pgxv4"
+	"github.com/vortex14/gue/adapter/pgxv5"
+	adapterTesting "github.com/vortex14/gue/adapter/testing"
 )
 
 func TestJob_Tx(t *testing.T) {

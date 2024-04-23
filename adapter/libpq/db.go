@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"errors"
 
-	"github.com/vgarvardt/gue/v5/adapter"
+	"github.com/vortex14/gue/adapter"
 )
 
 // aRow implements adapter.Row using github.com/lib/pq

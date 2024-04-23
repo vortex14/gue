@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/vgarvardt/gue/v5/adapter"
+	"github.com/vortex14/gue/adapter"
 )
 
 const defaultPoolConns = 5

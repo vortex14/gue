@@ -9,7 +9,7 @@ import (
 
 	"github.com/oklog/ulid/v2"
 
-	"github.com/vgarvardt/gue/v5/adapter"
+	"github.com/vortex14/gue/adapter"
 )
 
 // JobPriority is the wrapper type for Job.Priority

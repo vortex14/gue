@@ -1,4 +1,4 @@
-module github.com/vgarvardt/gue/v5
+module github.com/vortex14/gue
 
 go 1.20
 
