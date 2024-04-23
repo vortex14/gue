@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/vortex14/gue/adapter"
+	"github.com/vortex14/gue/v7/adapter"
 )
 
 func TestNew(t *testing.T) {

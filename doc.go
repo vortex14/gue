@@ -27,8 +27,8 @@ Here is a complete example showing worker setup for pgx/v4 and two jobs enqueued
 		"github.com/jackc/pgx/v5/pgxpool"
 		"golang.org/x/sync/errgroup"
 
-		"github.com/vortex14/gue"
-		"github.com/vortex14/gue/adapter/pgxv5"
+		"github.com/vortex14/gue/v7"
+		"github.com/vortex14/gue/v7/adapter/pgxv5"
 	)
 
 	type printNameArgs struct {

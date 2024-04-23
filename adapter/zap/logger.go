@@ -3,7 +3,7 @@ package zap
 import (
 	uberZap "go.uber.org/zap"
 
-	"github.com/vortex14/gue/adapter"
+	"github.com/vortex14/gue/v7/adapter"
 )
 
 var _ adapter.Logger = &zap{}

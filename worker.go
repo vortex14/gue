@@ -16,7 +16,7 @@ import (
 	noopT "go.opentelemetry.io/otel/trace/noop"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/vortex14/gue/adapter"
+	"github.com/vortex14/gue/v7/adapter"
 )
 
 // PollStrategy determines how the DB is queried for the next job to work on

@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/otel/metric/noop"
 
-	"github.com/vortex14/gue/adapter"
+	"github.com/vortex14/gue/v7/adapter"
 )
 
 func TestWithClientID(t *testing.T) {

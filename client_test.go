@@ -13,8 +13,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/vortex14/gue/adapter"
-	adapterTesting "github.com/vortex14/gue/adapter/testing"
+	"github.com/vortex14/gue/v7/adapter"
+	adapterTesting "github.com/vortex14/gue/v7/adapter/testing"
 )
 
 func TestLockJob(t *testing.T) {

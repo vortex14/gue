@@ -3,7 +3,7 @@ package zerolog
 import (
 	rsZerolog "github.com/rs/zerolog"
 
-	"github.com/vortex14/gue/adapter"
+	"github.com/vortex14/gue/v7/adapter"
 )
 
 var _ adapter.Logger = &zerolog{}

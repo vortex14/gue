@@ -13,9 +13,9 @@ import (
 
 	"github.com/IBM/sarama"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/vortex14/gue"
-	"github.com/vortex14/gue/adapter"
-	"github.com/vortex14/gue/adapter/pgxv5"
+	"github.com/vortex14/gue/v7"
+	"github.com/vortex14/gue/v7/adapter"
+	"github.com/vortex14/gue/v7/adapter/pgxv5"
 )
 
 //func init() {

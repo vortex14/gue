@@ -1,4 +1,4 @@
-module github.com/vortex14/gue
+module github.com/vortex14/gue/v7
 
 go 1.20
 

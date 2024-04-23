@@ -10,9 +10,9 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap/zaptest"
 
-	"github.com/vortex14/gue/adapter"
-	adapterTesting "github.com/vortex14/gue/adapter/testing"
-	adapterZap "github.com/vortex14/gue/adapter/zap"
+	"github.com/vortex14/gue/v7/adapter"
+	adapterTesting "github.com/vortex14/gue/v7/adapter/testing"
+	adapterZap "github.com/vortex14/gue/v7/adapter/zap"
 )
 
 func TestBackoff(t *testing.T) {

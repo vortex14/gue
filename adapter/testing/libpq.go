@@ -8,8 +8,8 @@ import (
 	_ "github.com/lib/pq" // register postgres driver
 	"github.com/stretchr/testify/require"
 
-	"github.com/vortex14/gue/adapter"
-	"github.com/vortex14/gue/adapter/libpq"
+	"github.com/vortex14/gue/v7/adapter"
+	"github.com/vortex14/gue/v7/adapter/libpq"
 )
 
 // OpenTestPoolMaxConnsLibPQ opens connections pool used in testing
