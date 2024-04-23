@@ -189,10 +189,9 @@ func (c *Client) LockJob(ctx context.Context, queue string) (*Job, error) {
 	sql := `SELECT job_id, queue, priority, run_at, job_type, args, error_count, last_error, created_at
 FROM gue_jobs
 WHERE queue = $1 AND run_at <= $2
-ORDER BY priority ASC
 LIMIT 1 FOR UPDATE SKIP LOCKED`
 
-	return c.execLockJob(ctx, true, sql, queue, time.Now().UTC())
+	return c.execLockJob(ctx, true, sql, queue, time.Now().UTC().Format(time.RFC3339))
 }
 
 // LockJobByID attempts to retrieve a specific Job from the database.
@@ -230,7 +229,6 @@ func (c *Client) LockNextScheduledJob(ctx context.Context, queue string) (*Job, 
 	sql := `SELECT job_id, queue, priority, run_at, job_type, args, error_count, last_error, created_at
 FROM gue_jobs
 WHERE queue = $1 AND run_at <= $2
-ORDER BY run_at, priority ASC
 LIMIT 1 FOR UPDATE SKIP LOCKED`
 
 	return c.execLockJob(ctx, true, sql, queue, time.Now().UTC())
