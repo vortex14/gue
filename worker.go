@@ -328,7 +328,7 @@ func (w *Worker) markJobDone(ctx context.Context, j *Job, processingStartedAt ti
 		ctx,
 		time.Since(processingStartedAt).Milliseconds(),
 		metric.WithAttributes(attrJobType.String(j.Type)),
-		metric.WithAttributes(attrJobType.String(j.Cluster)),
+		metric.WithAttributes(attrCluster.String(j.Cluster)),
 	)
 }
 
