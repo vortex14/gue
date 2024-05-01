@@ -32,6 +32,9 @@ type Job struct {
 	// Queue is the name of the queue. It defaults to the empty queue "".
 	Queue string
 
+	// Cluster is the name of k8s cluster
+	Cluster string
+
 	// Priority is the priority of the Job. The default priority is 0, and a
 	// lower number means a higher priority.
 	//
