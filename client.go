@@ -23,6 +23,7 @@ var ErrMissingType = errors.New("job type must be specified")
 var (
 	attrJobType = attribute.Key("job-type")
 	attrSuccess = attribute.Key("success")
+	attrCluster = attribute.Key("cluster")
 )
 
 // Client is a Gue client that can add jobs to the queue and remove jobs from
@@ -158,7 +159,7 @@ VALUES
 		adapter.F("id", idAsString),
 	)
 
-	c.mEnqueue.Add(ctx, 1, metric.WithAttributes(attrJobType.String(j.Type), attrSuccess.Bool(err == nil)))
+	c.mEnqueue.Add(ctx, 1, metric.WithAttributes(attrJobType.String(j.Type), attrSuccess.Bool(err == nil), attrCluster.String(j.Cluster)))
 
 	return err
 }
@@ -237,7 +238,7 @@ LIMIT 1 FOR UPDATE SKIP LOCKED`
 func (c *Client) execLockJob(ctx context.Context, handleErrNoRows bool, sql string, args ...any) (*Job, error) {
 	tx, err := c.pool.Begin(ctx)
 	if err != nil {
-		c.mLockJob.Add(ctx, 1, metric.WithAttributes(attrJobType.String(""), attrSuccess.Bool(false)))
+		c.mLockJob.Add(ctx, 1, metric.WithAttributes(attrJobType.String(""), attrSuccess.Bool(false), attrCluster.String("")))
 		return nil, err
 	}
 
@@ -255,7 +256,7 @@ func (c *Client) execLockJob(ctx context.Context, handleErrNoRows bool, sql stri
 		&j.CreatedAt,
 	)
 	if err == nil {
-		c.mLockJob.Add(ctx, 1, metric.WithAttributes(attrJobType.String(j.Type), attrSuccess.Bool(true)))
+		c.mLockJob.Add(ctx, 1, metric.WithAttributes(attrJobType.String(j.Type), attrSuccess.Bool(true), attrCluster.String(j.Cluster)))
 		return &j, nil
 	}
 

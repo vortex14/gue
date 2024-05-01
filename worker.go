@@ -194,7 +194,7 @@ func (w *Worker) WorkOne(ctx context.Context) (didWork bool) {
 	j, err := w.pollFunc(ctx, w.queue)
 	if err != nil {
 		span.RecordError(fmt.Errorf("woker failed to lock a job: %w", err))
-		w.mWorked.Add(ctx, 1, metric.WithAttributes(attrJobType.String(""), attrSuccess.Bool(false), attrSuccess.String(j.Cluster)))
+		w.mWorked.Add(ctx, 1, metric.WithAttributes(attrJobType.String(""), attrSuccess.Bool(false), attrCluster.String(j.Cluster)))
 		w.logger.Error("Worker failed to lock a job", adapter.Err(err))
 
 		for _, hook := range w.hooksJobLocked {
@@ -247,7 +247,7 @@ func (w *Worker) WorkOne(ctx context.Context) (didWork bool) {
 	defer cancel()
 
 	if err = wf(handlerCtx, j); err != nil {
-		w.mWorked.Add(ctx, 1, metric.WithAttributes(attrJobType.String(j.Type), attrSuccess.Bool(false), attrSuccess.String(j.Cluster)))
+		w.mWorked.Add(ctx, 1, metric.WithAttributes(attrJobType.String(j.Type), attrSuccess.Bool(false), attrCluster.String(j.Cluster)))
 
 		for _, hook := range w.hooksJobDone {
 			hook(ctx, j, err)
@@ -271,13 +271,13 @@ func (w *Worker) WorkOne(ctx context.Context) (didWork bool) {
 		ll.Error("Got an error on deleting a job", adapter.Err(err))
 	}
 
-	w.mWorked.Add(ctx, 1, metric.WithAttributes(attrJobType.String(j.Type), attrSuccess.Bool(err == nil), attrSuccess.String(j.Cluster)))
+	w.mWorked.Add(ctx, 1, metric.WithAttributes(attrJobType.String(j.Type), attrSuccess.Bool(err == nil), attrCluster.String(j.Cluster)))
 	ll.Debug("Job finished")
 	return
 }
 
 func (w *Worker) handleUnknownJobType(ctx context.Context, j *Job, span trace.Span, ll adapter.Logger) {
-	w.mWorked.Add(ctx, 1, metric.WithAttributes(attrJobType.String(j.Type), attrSuccess.Bool(false), attrSuccess.String(j.Cluster)))
+	w.mWorked.Add(ctx, 1, metric.WithAttributes(attrJobType.String(j.Type), attrSuccess.Bool(false), attrCluster.String(j.Cluster)))
 
 	span.RecordError(fmt.Errorf("job with unknown type: %q", j.Type))
 	ll.Error("Got a job with unknown type")
@@ -347,7 +347,7 @@ func (w *Worker) recoverPanic(ctx context.Context, j *Job, logger adapter.Logger
 
 	stacktrace := buildStackTrace(r, w.panicStackBufSize, logger)
 
-	w.mWorked.Add(ctx, 1, metric.WithAttributes(attrJobType.String(j.Type), attrSuccess.Bool(false), attrSuccess.String(j.Cluster)))
+	w.mWorked.Add(ctx, 1, metric.WithAttributes(attrJobType.String(j.Type), attrSuccess.Bool(false), attrCluster.String(j.Cluster)))
 	span.RecordError(ErrJobPanicked, trace.WithAttributes(attribute.String("stacktrace", stacktrace)))
 	logger.Error("Job panicked", adapter.F("stacktrace", stacktrace))
 
