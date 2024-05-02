@@ -194,7 +194,9 @@ func (w *Worker) WorkOne(ctx context.Context) (didWork bool) {
 	j, err := w.pollFunc(ctx, w.queue)
 	if err != nil {
 		span.RecordError(fmt.Errorf("woker failed to lock a job: %w", err))
-		w.mWorked.Add(ctx, 1, metric.WithAttributes(attrJobType.String(""), attrSuccess.Bool(false), attrCluster.String(j.Cluster)))
+		if w.mDuration != nil {
+			w.mWorked.Add(ctx, 1, metric.WithAttributes(attrJobType.String(""), attrSuccess.Bool(false), attrCluster.String(j.Cluster)))
+		}
 		w.logger.Error("Worker failed to lock a job", adapter.Err(err))
 
 		for _, hook := range w.hooksJobLocked {
